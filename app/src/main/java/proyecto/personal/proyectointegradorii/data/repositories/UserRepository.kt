@@ -2,36 +2,33 @@ package proyecto.personal.proyectointegradorii.data.repositories
 
 import kotlinx.coroutines.delay
 import proyecto.personal.proyectointegradorii.data.model.Usuario
+import proyecto.personal.proyectointegradorii.data.remote.dto.LoginRequest
+import proyecto.personal.proyectointegradorii.data.remote.dto.RegisterRequest
+import proyecto.personal.proyectointegradorii.data.remote.network.RetrofitClient
 
-interface UserRepository {
-    suspend fun login(correo: String, password: String): Result<Usuario>
-    suspend fun register(nombreCompleto: String, correo: String, password: String): Result<Usuario>
-}
-
-class MockUserRepository : UserRepository {
-    override suspend fun login(correo: String, password: String): Result<Usuario> {
-        delay(2000)
-
-        return if (correo == "gama123@gmail.com" && password == "gama123") {
-            val usuarioFalse = Usuario(1, "Gamaliel Leonel", correo)
-            Result.success(usuarioFalse)
-        } else {
-            Result.failure(Exception("Credenciales incorrectas"))
+class UserRepository {
+    suspend fun login(correo: String, password: String): Usuario? {
+        return try {
+            RetrofitClient.api.login(
+                LoginRequest(correo, password)
+            )
+        } catch (e: Exception) {
+            null
         }
     }
 
-    override suspend fun register(
-        nombreCompleto: String,
-        correo: String,
-        password: String
-    ): Result<Usuario> {
-        delay(2000)
-
-        val nuevoUsuario = Usuario(
-            id = (2..1000).random(),
-            nombreCompleto,
-            correo
-        )
-        return Result.success(nuevoUsuario)
+    suspend fun register(usuario: Usuario): Boolean {
+        return try {
+            RetrofitClient.api.register(
+                RegisterRequest(
+                    nombreCompleto = usuario.nombre_completo,
+                    correo = usuario.correo_electronico,
+                    contrasena = usuario.contrasena
+                )
+            )
+            true
+        } catch (e: Exception) {
+            false
+        }
     }
 }
