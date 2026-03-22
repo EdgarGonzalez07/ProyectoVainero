@@ -1,42 +1,35 @@
 package proyecto.personal.proyectointegradorii.viewmodels.register
 
-import android.opengl.ETC1.isValid
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import proyecto.personal.proyectointegradorii.data.repositories.MockUserRepository
+import proyecto.personal.proyectointegradorii.data.repositories.UserRepository
 
-class RegisterViewModel: ViewModel() {
+class RegisterViewModel(
+    private val repository: UserRepository = MockUserRepository()
+): ViewModel() {
 
     private val _name = MutableStateFlow("")
     val name = _name.asStateFlow()
-
     private val _email = MutableStateFlow("")
     val email = _email.asStateFlow()
-
     private val _password = MutableStateFlow("")
     val password = _password.asStateFlow()
-
     private val _confirmPassword = MutableStateFlow("")
     val confirmPassword = _confirmPassword.asStateFlow()
-
     private val _isRegister = MutableStateFlow(false)
     val isRegister = _isRegister.asStateFlow()
-
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage = _errorMessage.asStateFlow()
-
     private val _errorName = MutableStateFlow<String?>(null)
     val errorName = _errorName.asStateFlow()
-
     private val _errorEmail = MutableStateFlow<String?>(null)
     val errorEmail = _errorEmail.asStateFlow()
-
     private val _errorPassword = MutableStateFlow<String?>(null)
     val errorPassword = _errorPassword.asStateFlow()
-
     private val _errorConfirmPassword = MutableStateFlow<String?>(null)
     val errorConfirmPassword = _errorConfirmPassword.asStateFlow()
 
@@ -99,12 +92,23 @@ class RegisterViewModel: ViewModel() {
             isValid = false
         }
 
-        if (isValid) return
+        if (!isValid) return
 
         viewModelScope.launch {
             _isRegister.value = true
-            delay(2000)
-            println("Registrando a ${_name.value} con ${_email.value}")
+
+            val resultado = repository.register(
+                _name.value.trim(),
+                _email.value,
+                _password.value
+            )
+
+            resultado.onSuccess { nuevoUsuario ->
+                println("¡Registro exitoso! Bienvenido ${nuevoUsuario.nombreCompleto}, tu ID es el ${nuevoUsuario.id}")
+            }.onFailure { excepcion ->
+                _errorMessage.value = excepcion.message ?: "Error desconocido"
+            }
+
             _isRegister.value = false
         }
     }

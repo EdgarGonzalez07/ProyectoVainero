@@ -6,15 +6,17 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import proyecto.personal.proyectointegradorii.data.repositories.MockUserRepository
+import proyecto.personal.proyectointegradorii.data.repositories.UserRepository
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel(
+    private val repository: UserRepository = MockUserRepository()
+) : ViewModel() {
 
     private val _email = MutableStateFlow("")
     val email = _email.asStateFlow()
-
     private val _password = MutableStateFlow("")
     val password = _password.asStateFlow()
-
     private val _isLoggedIn = MutableStateFlow(false)
     val isLoggedIn = _isLoggedIn.asStateFlow()
     private val _emailError = MutableStateFlow<String?>(null)
@@ -58,13 +60,17 @@ class LoginViewModel : ViewModel() {
 
         viewModelScope.launch {
             _isLoggedIn.value = true
-            delay(2250)
 
-            if( _email.value == "gama123@gmail.com" && _password.value == "gama123"){
-                println("Login Exitoso")
+            val resultado = repository.login(
+                _email.value,
+                _password.value
+            )
 
-            } else {
-                _generalErrorMessage.value = "Credenciales incorrectas, intente de nuevo."
+            resultado.onSuccess { usuarioRegistrado ->
+                println("¡Login exitoso! Bienvenido ${usuarioRegistrado.nombreCompleto}")
+                _generalErrorMessage.value = null
+            }.onFailure { excepcion ->
+                _generalErrorMessage.value = excepcion.message ?: "Error desconocido"
             }
 
             _isLoggedIn.value = false
