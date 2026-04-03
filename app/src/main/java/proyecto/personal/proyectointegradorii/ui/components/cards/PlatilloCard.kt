@@ -52,7 +52,6 @@ fun PlatilloCard(
             modifier = Modifier
                 .padding(16.dp)
         ) {
-
             // Imagen
             AsyncImage(
                 model = imagenUrl,
@@ -62,9 +61,7 @@ fun PlatilloCard(
                     .size(90.dp)
                     .clip(RoundedCornerShape(16.dp))
             )
-
             Spacer(modifier = Modifier.width(16.dp))
-
             // Info
             Column(
                 modifier = Modifier.weight(1f)
@@ -74,18 +71,14 @@ fun PlatilloCard(
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )
-
                 Spacer(modifier = Modifier.height(6.dp))
-
                 Text(
                     text = descripcion,
                     fontSize = 14.sp,
                     color = Color.Gray,
                     maxLines = 2
                 )
-
                 Spacer(modifier = Modifier.height(10.dp))
-
                 Text(
                     text = "$${precio.toInt()}",
                     color = Color(0xFFFF6B2C),
@@ -93,7 +86,6 @@ fun PlatilloCard(
                     fontSize = 18.sp
                 )
             }
-
             // Botón
             Box(
                 modifier = Modifier.fillMaxHeight(),

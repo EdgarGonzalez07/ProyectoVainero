@@ -1,4 +1,4 @@
-package proyecto.personal.proyectointegradorii.ui.components.cards.account
+package proyecto.personal.proyectointegradorii.ui.components.headers
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import proyecto.personal.proyectointegradorii.ui.components.texts.GlobalText
 import proyecto.personal.proyectointegradorii.ui.components.texts.Tittle
@@ -57,18 +58,17 @@ fun CardHeaderAccount(
                     .clip(CircleShape)
                     .background(MainColor)
                     .border(
-                        width = 2.dp,
-                        color = MainColor,
+                        width = 3.dp,
+                        color = Color.White,
                         shape = CircleShape
-                    )
-                    .padding(vertical = 15.dp),
+                    ),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
                     imageVector = Icons.Default.Person,
                     contentDescription = "Icono de Perfil",
                     tint = Color.White,
-                    modifier = Modifier.size(70.dp),
+                    modifier = Modifier.size(60.dp),
                 )
             }
             Spacer(Modifier.padding(vertical = 8.dp))
@@ -85,7 +85,7 @@ fun CardHeaderAccount(
                 CommentTextColor,
                 Modifier
             )
-            Spacer(Modifier.padding(vertical = 15.dp))
+            Spacer(Modifier.padding(vertical = 35.dp))
         }
     }
 }

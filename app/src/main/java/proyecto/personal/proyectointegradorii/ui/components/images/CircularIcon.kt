@@ -34,7 +34,7 @@ fun CircularIcon(
             icon,
             contentDescription = description,
             tint = tintIcon,
-            modifier = Modifier.size(80.dp)
+            modifier = Modifier.size(60.dp)
         )
     }
 }

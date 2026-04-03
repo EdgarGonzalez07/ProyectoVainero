@@ -16,20 +16,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import proyecto.personal.proyectointegradorii.ui.components.buttons.GlobalButton
 import proyecto.personal.proyectointegradorii.ui.components.buttons.GlobalTextButton
-import proyecto.personal.proyectointegradorii.ui.components.cards.header.CardHeaderCLogo
-import proyecto.personal.proyectointegradorii.ui.components.cards.login.LoginCard
+import proyecto.personal.proyectointegradorii.ui.components.cards.GlobalCard
+import proyecto.personal.proyectointegradorii.ui.components.headers.HeaderLogin
 import proyecto.personal.proyectointegradorii.ui.components.inputs.GlobalTextInput
 import proyecto.personal.proyectointegradorii.ui.components.inputs.PasswordInput
 import proyecto.personal.proyectointegradorii.ui.components.texts.ErrorText
 import proyecto.personal.proyectointegradorii.ui.components.texts.GlobalText
-import proyecto.personal.proyectointegradorii.ui.theme.AlertColor
 import proyecto.personal.proyectointegradorii.ui.theme.BackgroundColor
 import proyecto.personal.proyectointegradorii.ui.theme.MainColor
 import proyecto.personal.proyectointegradorii.ui.theme.TextColorDark
@@ -51,7 +49,8 @@ fun ScreenLogin(
     val emailError by viewModel.emailError.collectAsState()
     val password by viewModel.password.collectAsState()
     val passwordError by viewModel.passwordError.collectAsState()
-    val isLoggedIn by viewModel.loginSuccess.collectAsState()
+    val isLoggedIn by viewModel.isLoading.collectAsState()
+    val loginsuccess by viewModel.loginSuccess.collectAsState()
 
     LaunchedEffect(isLoggedIn) {
         if (isLoggedIn) {
@@ -70,12 +69,12 @@ fun ScreenLogin(
             .padding(start = 20.dp)
             .padding(end = 20.dp)
     ) {
-        CardHeaderCLogo(
+        HeaderLogin(
             tittle = "Iniciar Sesión",
             modifier = Modifier
         )
         Spacer(modifier = Modifier.height(50.dp))
-        LoginCard(
+        GlobalCard(
            content = {
                Column(
                    horizontalAlignment = Alignment.CenterHorizontally,
@@ -83,7 +82,7 @@ fun ScreenLogin(
                    verticalArrangement = Arrangement.Center
                ) {
                    GlobalText(
-                       "Correo Electronico",
+                       "Correo Electrónico",
                        24,
                        TextColorDark,
                        Modifier.padding(top = 20.dp)
@@ -118,7 +117,7 @@ fun ScreenLogin(
                    )
                    ErrorText(error = passwordError, size = 14, Modifier)
                    GlobalTextButton(
-                       "¿Olvidate tu contraseña?",
+                       "¿Olvidaste tu contraseña?",
                        MainColor.copy(alpha = 0.8f),
                        {
                            navController.navigate("Recover")
@@ -138,9 +137,11 @@ fun ScreenLogin(
                        Color.White,
                        {
                            viewModel.login()
-                           /*navController.navigate("Main") {
-                               popUpTo("Login") { inclusive = true }
-                           }*/
+                           if (loginsuccess) {
+                               navController.navigate("Main") {
+                                   popUpTo("Login") { inclusive = true }
+                               }
+                           }
                        },
                        Modifier,
                        enabled = !isLoggedIn
@@ -164,7 +165,7 @@ fun ScreenLogin(
                 Modifier
             )
             GlobalTextButton(
-                "Registrate Aquí",
+                "Registrate",
                 MainColor,
                 {
                     navController.navigate("Register")

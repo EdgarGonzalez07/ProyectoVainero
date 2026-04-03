@@ -1,5 +1,6 @@
 package proyecto.personal.proyectointegradorii.ui.components.bars.navigationbar
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -18,16 +19,18 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
 import proyecto.personal.proyectointegradorii.ui.navigation.internalroutes.BottomNavItems
+import proyecto.personal.proyectointegradorii.ui.theme.BackgroundColor
 import proyecto.personal.proyectointegradorii.ui.theme.MainColor
 
 @Composable
 fun MainBottomBar(
-    navController: NavController
+    navController: NavController,
+    modifier: Modifier = Modifier
 ) {
     val items = listOf(
         BottomNavItems.Home,
-        BottomNavItems.Scan,
         BottomNavItems.Cart,
+        BottomNavItems.Scan,
         BottomNavItems.Offers,
         BottomNavItems.Points
     )
@@ -36,9 +39,9 @@ fun MainBottomBar(
         .currentBackStackEntryAsState().value?.destination
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 20.dp)
+            .background(Color.Transparent),
     ) {
         NavigationBar(
             modifier = Modifier

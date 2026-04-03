@@ -1,5 +1,6 @@
 package proyecto.personal.proyectointegradorii.ui.components.buttons
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -33,11 +34,10 @@ fun GlobalButton(
         enabled = enabled,
         modifier = modifier
             .height(alt.dp)
-            .width(ancho.dp),
+            .width(ancho.dp)
+            .border(1.dp, bordercolorbutton, RoundedCornerShape(15.dp)),
         colors = ButtonDefaults.buttonColors(
-            containerColor = bordercolorbutton,
-            disabledContentColor = colorbutton.copy(alpha = 0.4f),
-            contentColor = colorbutton
+            containerColor = colorbutton
         ),
         shape = RoundedCornerShape(15.dp),
         elevation = ButtonDefaults.buttonElevation(
