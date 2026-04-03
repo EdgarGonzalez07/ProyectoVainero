@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import proyecto.personal.proyectointegradorii.ui.components.cards.HistoryCard
 import proyecto.personal.proyectointegradorii.ui.components.headers.HeaderCBack
 import proyecto.personal.proyectointegradorii.ui.theme.BackgroundColor
 
@@ -18,6 +19,7 @@ import proyecto.personal.proyectointegradorii.ui.theme.BackgroundColor
 fun HistoryScreen(
     navController: NavController
 )   {
+    val na: List<String> = listOf("perico", "pollo")
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -25,7 +27,7 @@ fun HistoryScreen(
     ) {
         HeaderCBack(
             "Historial de Pedidos",
-            26,
+            30,
             Modifier,
             navController
         )
@@ -38,7 +40,14 @@ fun HistoryScreen(
                 .background(BackgroundColor)
         ) {
             item {
-
+                HistoryCard(
+                    "120",
+                    "Completado",
+            "2020",
+                    na,
+                    "330",
+                    Modifier
+                )
             }
         }
     }

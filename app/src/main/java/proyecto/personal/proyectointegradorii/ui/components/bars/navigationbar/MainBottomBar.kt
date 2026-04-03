@@ -19,7 +19,6 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
 import proyecto.personal.proyectointegradorii.ui.navigation.internalroutes.BottomNavItems
-import proyecto.personal.proyectointegradorii.ui.theme.BackgroundColor
 import proyecto.personal.proyectointegradorii.ui.theme.MainColor
 
 @Composable
@@ -71,7 +70,7 @@ fun MainBottomBar(
                     icon = {
                         Icon(
                             imageVector = item.icon,
-                            item.label,
+                            contentDescription = item.label,
                         )
                     },
                     label = {

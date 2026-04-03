@@ -26,6 +26,7 @@ import proyecto.personal.proyectointegradorii.ui.theme.BackgroundColor
 
 @Composable
 fun SAccount(
+    navController: NavController,
     rootNavController: NavController
 ) {
     Column(
@@ -50,7 +51,6 @@ fun SAccount(
                         icon = Icons.Default.PermIdentity,
                         text = "Datos Personales",
                         onClick = {
-                            // Aquí USARÁS el rootNavController para que la nav bar desaparezca
                             rootNavController.navigate("personaldates")
                         }
                     )
@@ -59,7 +59,7 @@ fun SAccount(
                         icon = Icons.Default.History,
                         text = "Historial de Pedidos",
                         onClick = {
-                            // rootNavController también aquí
+                            rootNavController.navigate("history")
                         }
                     )
                     Divider(color = Color.LightGray, thickness = 1.dp)
@@ -67,7 +67,7 @@ fun SAccount(
                         icon = Icons.Default.Settings,
                         text = "Ajustes",
                         onClick = {
-                            // rootNavController también aquí
+                            rootNavController.navigate("Configurate")
                         }
                     )
                     Divider(color = Color.LightGray, thickness = 1.dp)

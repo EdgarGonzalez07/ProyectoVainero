@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import proyecto.personal.proyectointegradorii.ui.screens.account.ChangePasswordScreen
+import proyecto.personal.proyectointegradorii.ui.screens.account.HistoryScreen
 import proyecto.personal.proyectointegradorii.ui.screens.account.PersonalDatesScreen
 import proyecto.personal.proyectointegradorii.ui.screens.internal.SMain
 import proyecto.personal.proyectointegradorii.ui.screens.account.SConfigurate
@@ -39,7 +40,7 @@ fun Navigation(){
             PersonalDatesScreen(navController)
         }
         composable("history"){
-
+            HistoryScreen(navController)
         }
         composable("changepassword"){
             ChangePasswordScreen(navController)
