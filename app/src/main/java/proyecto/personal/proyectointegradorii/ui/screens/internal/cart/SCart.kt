@@ -10,15 +10,24 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import proyecto.personal.proyectointegradorii.ui.components.alerts.successful.SuccessOrderDialog
+import proyecto.personal.proyectointegradorii.ui.components.buttons.GlobalButton
 import proyecto.personal.proyectointegradorii.ui.components.headers.HeaderCBack
 import proyecto.personal.proyectointegradorii.ui.components.headers.InternalHeader
+import proyecto.personal.proyectointegradorii.ui.components.texts.GlobalText
 import proyecto.personal.proyectointegradorii.ui.theme.BackgroundColor
+import proyecto.personal.proyectointegradorii.ui.theme.MainColor
+import proyecto.personal.proyectointegradorii.ui.theme.TextColorDark
+import proyecto.personal.proyectointegradorii.ui.theme.TextColorWhite
 import proyecto.personal.proyectointegradorii.viewmodels.cart.CartViewModel
 
 @Composable
-fun SCart(cartViewModel: CartViewModel) {
+fun SCart(cartViewModel: CartViewModel,
+          navController: NavController,) {
 
     val items by cartViewModel.cartItems.collectAsState()
+    var showSuccessDialog by remember { mutableStateOf(false) }
 
     Column(modifier = Modifier
         .fillMaxSize()
@@ -52,23 +61,42 @@ fun SCart(cartViewModel: CartViewModel) {
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            Text("Total: $${cartViewModel.getTotal()}")
+            GlobalText(
+                "Total: $${cartViewModel.getTotal()}",
+                18,
+                TextColorDark,
+                Modifier
+            )
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            Button(
-                onClick = {
+            GlobalButton(
+                "Confirmar Pedido",
+                16,
+                50,
+                350,
+                MainColor,
+                MainColor,
+                TextColorWhite,
+                {
                     cartViewModel.confirmarPedido(
                         clienteId = 1,
                         mesaId = 1
                     )
+                    showSuccessDialog = true
                 },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Confirmar pedido")
-            }
+                Modifier
+            )
         }
-
         println("Items en carrito: ${items.size}")
+    }
+
+    if (showSuccessDialog) {
+        SuccessOrderDialog(
+            onDismiss = {
+                showSuccessDialog = false
+                navController.popBackStack()
+            }
+        )
     }
 }

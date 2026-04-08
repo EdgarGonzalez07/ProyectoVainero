@@ -36,9 +36,7 @@ import androidx.compose.ui.unit.sp
 import proyecto.personal.proyectointegradorii.ui.components.headers.HeaderPuntos
 import proyecto.personal.proyectointegradorii.ui.components.messages.AdMessage
 import proyecto.personal.proyectointegradorii.ui.components.texts.GlobalText
-import proyecto.personal.proyectointegradorii.ui.theme.BackgroundCardColor
 import proyecto.personal.proyectointegradorii.ui.theme.BackgroundColor
-import proyecto.personal.proyectointegradorii.ui.theme.ColorAd
 import proyecto.personal.proyectointegradorii.ui.theme.CommentContainerColor
 import proyecto.personal.proyectointegradorii.ui.theme.CommentContentColor
 import proyecto.personal.proyectointegradorii.ui.theme.ContainerColor

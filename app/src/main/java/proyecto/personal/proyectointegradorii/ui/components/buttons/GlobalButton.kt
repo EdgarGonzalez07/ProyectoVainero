@@ -49,7 +49,7 @@ fun GlobalButton(
             horizontal = 18.dp,
             vertical = 12.dp
         )
-        ){
+    ){
         Text(
             text = text,
             fontWeight = FontWeight.SemiBold,

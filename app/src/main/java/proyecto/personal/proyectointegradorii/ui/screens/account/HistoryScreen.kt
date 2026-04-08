@@ -28,6 +28,7 @@ fun HistoryScreen(
         HeaderCBack(
             "Historial de Pedidos",
             30,
+            BackgroundColor,
             Modifier,
             navController
         )

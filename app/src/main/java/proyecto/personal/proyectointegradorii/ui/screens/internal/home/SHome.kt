@@ -43,7 +43,6 @@ import proyecto.personal.proyectointegradorii.viewmodels.home.HomeViewModel
 @Composable
 fun SHome(
     navController: NavController,
-    rootNavController: NavHostController,
     cartViewModel: CartViewModel,
     viewModel: HomeViewModel = viewModel()
 ) {

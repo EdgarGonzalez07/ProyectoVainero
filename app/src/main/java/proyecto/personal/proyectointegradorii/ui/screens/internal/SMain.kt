@@ -45,10 +45,10 @@ fun SMain(rootNavController: NavHostController) {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable("home") {
-                SHome(navController, rootNavController, cartViewModel)
+                SHome(navController, cartViewModel)
             }
             composable("cart") {
-                SCart(cartViewModel)
+                SCart(cartViewModel, navController)
             }
             composable("scan") { SScan() }
             composable("offers") { SOffers() }
