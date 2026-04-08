@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.runtime.Composable
@@ -70,7 +69,7 @@ fun SRecoverPassword(
         HeaderCBack(
             if (isCodeSent) "Nueva Contraseña" else "Recuperar Contraseña",
             if (isCodeSent) 30 else 27,
-            backgroundColor = BackgroundColor,
+            MainColor,
             Modifier,
             navController
         )

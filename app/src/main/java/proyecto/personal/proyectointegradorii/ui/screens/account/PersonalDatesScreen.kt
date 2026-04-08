@@ -41,7 +41,7 @@ fun PersonalDatesScreen(navController: NavController) {
         HeaderCBack(
             "Datos Personales",
             30,
-            BackgroundColor,
+            MainColor,
             Modifier,
             navController
         )
