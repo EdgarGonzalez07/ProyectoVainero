@@ -70,7 +70,11 @@ fun SRecoverPassword(
             if (isCodeSent) "Nueva Contraseña" else "Recuperar Contraseña",
             if (isCodeSent) 30 else 27,
             MainColor,
-            Modifier,
+            Modifier
+                .padding(
+                    start = (-10).dp,
+                    end = (-10).dp
+                ),
             navController
         )
         Spacer(modifier = Modifier.padding(vertical = 35.dp))
@@ -124,7 +128,9 @@ fun SRecoverPassword(
                                 MainColor,
                                 MainColor,
                                 TextColorWhite,
-                                {},
+                                {
+                                    //Lógica para enviar el código
+                                },
                                 Modifier
                             )
                             Spacer(Modifier.padding(vertical = 10.dp))
@@ -245,7 +251,7 @@ fun SRecoverPassword(
                             ancho = 350,
                             bordercolorbutton = MainColor,
                             colorbutton = MainColor,
-                            colortext = Color.White,
+                            colortext = TextColorWhite,
                             onClick = { viewModel.resetPassword() },
                             modifier = Modifier,
                             enabled = !isLoading

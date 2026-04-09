@@ -12,39 +12,27 @@ import proyecto.personal.proyectointegradorii.data.repositories.UserRepository
 
 class RegisterViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val dao = AppDatabase.getDatabase(application).usuarioDao()
     private val repository = UserRepository()
-
     private val _name = MutableStateFlow("")
     val name = _name.asStateFlow()
-
     private val _email = MutableStateFlow("")
     val email = _email.asStateFlow()
-
     private val _password = MutableStateFlow("")
     val password = _password.asStateFlow()
-
     private val _confirmPassword = MutableStateFlow("")
     val confirmPassword = _confirmPassword.asStateFlow()
-
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
-
     private val _success = MutableStateFlow(false)
     val success = _success.asStateFlow()
-
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage = _errorMessage.asStateFlow()
-
     private val _errorName = MutableStateFlow<String?>(null)
     val errorName = _errorName.asStateFlow()
-
     private val _errorEmail = MutableStateFlow<String?>(null)
     val errorEmail = _errorEmail.asStateFlow()
-
     private val _errorPassword = MutableStateFlow<String?>(null)
     val errorPassword = _errorPassword.asStateFlow()
-
     private val _errorConfirmPassword = MutableStateFlow<String?>(null)
     val errorConfirmPassword = _errorConfirmPassword.asStateFlow()
 

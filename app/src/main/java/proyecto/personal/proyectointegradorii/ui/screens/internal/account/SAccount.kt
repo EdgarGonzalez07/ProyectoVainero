@@ -26,7 +26,6 @@ import proyecto.personal.proyectointegradorii.ui.theme.BackgroundColor
 
 @Composable
 fun SAccount(
-    navController: NavController,
     rootNavController: NavController
 ) {
     Column(
@@ -54,7 +53,7 @@ fun SAccount(
                             rootNavController.navigate("personaldates")
                         }
                     )
-                    Divider(color = Color.LightGray, thickness = 1.dp)
+                    Divider(color = Color.LightGray, thickness = 1.5.dp)
                     ButtonAccount(
                         icon = Icons.Default.History,
                         text = "Historial de Pedidos",
@@ -62,7 +61,7 @@ fun SAccount(
                             rootNavController.navigate("history")
                         }
                     )
-                    Divider(color = Color.LightGray, thickness = 1.dp)
+                    Divider(color = Color.LightGray, thickness = 1.5.dp)
                     ButtonAccount(
                         icon = Icons.Default.Settings,
                         text = "Ajustes",
@@ -70,7 +69,7 @@ fun SAccount(
                             rootNavController.navigate("Configurate")
                         }
                     )
-                    Divider(color = Color.LightGray, thickness = 1.dp)
+                    Divider(color = Color.LightGray, thickness = 1.5.dp)
                     ButtonAccount(
                         icon = Icons.Default.Logout,
                         text = "Cerrar Sesión",

@@ -31,7 +31,7 @@ fun SOffers()  {
         item {
             InternalHeader(
                 tittle = "Promociones",
-                sizetittle = 28 // Ajusta el tamaño según tu componente Tittle
+                sizetittle = 28
             )
         }
 

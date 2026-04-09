@@ -1,9 +1,8 @@
-package proyecto.personal.proyectointegradorii.ui.components.bars.navigationbar
+package proyecto.personal.proyectointegradorii.ui.components.bars
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -19,6 +18,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
 import proyecto.personal.proyectointegradorii.ui.navigation.internalroutes.BottomNavItems
+import proyecto.personal.proyectointegradorii.ui.theme.BackgroundCardColor
 import proyecto.personal.proyectointegradorii.ui.theme.MainColor
 
 @Composable
@@ -51,7 +51,7 @@ fun MainBottomBar(
                         topEnd = 30.dp
                     )
                 ),
-            containerColor = Color.White,
+            containerColor = BackgroundCardColor,
             tonalElevation = 8.dp,
         ) {
             items.forEach { item ->

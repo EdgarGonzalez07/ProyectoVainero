@@ -7,33 +7,29 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import proyecto.personal.proyectointegradorii.data.model.usuario.AppDatabase
+import proyecto.personal.proyectointegradorii.data.remote.dto.usuario.LoginResponse
+import proyecto.personal.proyectointegradorii.data.remote.network.SessionManager
 import proyecto.personal.proyectointegradorii.data.repositories.UserRepository
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val dao = AppDatabase.getDatabase(application).usuarioDao()
     private val repository = UserRepository()
-
     private val _email = MutableStateFlow("")
     val email = _email.asStateFlow()
-
     private val _password = MutableStateFlow("")
     val password = _password.asStateFlow()
-
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
-
     private val _loginSuccess = MutableStateFlow(false)
     val loginSuccess = _loginSuccess.asStateFlow()
-
     private val _generalErrorMessage = MutableStateFlow<String?>(null)
     val generalErrorMessage = _generalErrorMessage.asStateFlow()
-
     private val _emailError = MutableStateFlow<String?>(null)
     val emailError = _emailError.asStateFlow()
-
     private val _passwordError = MutableStateFlow<String?>(null)
     val passwordError = _passwordError.asStateFlow()
+    private val _usuario = MutableStateFlow<LoginResponse?>(null)
+    val usuario = _usuario.asStateFlow()
 
     fun onEmailChange(newEmail: String){
         _email.value = newEmail
@@ -65,15 +61,31 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             _isLoading.value = true
 
-            val usuario = repository.login(
-                _email.value,
-                _password.value
-            )
+            try {
+                val response = repository.login(
+                    _email.value,
+                    _password.value
+                )
 
-            if (usuario != null) {
-                _loginSuccess.value = true
-            } else {
-                _generalErrorMessage.value = "Credenciales incorrectas"
+                if (response != null) {
+
+                    // 🔥 Guardar usuario en memoria
+                    _usuario.value = response
+
+                    // 🔐 Guardar token
+                    SessionManager.saveToken(
+                        getApplication(),
+                        response.token
+                    )
+
+                    _loginSuccess.value = true
+
+                } else {
+                    _generalErrorMessage.value = "Credenciales incorrectas"
+                }
+
+            } catch (e: Exception) {
+                _generalErrorMessage.value = "Error de conexión"
             }
 
             _isLoading.value = false

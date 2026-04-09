@@ -31,6 +31,7 @@ import proyecto.personal.proyectointegradorii.ui.theme.BackgroundCardColor
 import proyecto.personal.proyectointegradorii.ui.theme.BackgroundColor
 import proyecto.personal.proyectointegradorii.ui.theme.MainColor
 import proyecto.personal.proyectointegradorii.ui.theme.TextColorDark
+import proyecto.personal.proyectointegradorii.ui.theme.TextColorWhite
 import proyecto.personal.proyectointegradorii.viewmodels.register.RegisterViewModel
 
 @Composable
@@ -81,7 +82,11 @@ fun ScreenRegister(
             "Crear Cuenta",
             35,
             MainColor,
-            Modifier,
+            Modifier
+                .padding(
+                    start = (-20).dp,
+                    end = (-20).dp
+                ),
             navController
         )
         Spacer(modifier = Modifier.height(40.dp))
@@ -190,7 +195,7 @@ fun ScreenRegister(
                                 130,
                                 MainColor,
                                 MainColor,
-                                Color.White,
+                                TextColorWhite,
                                 {
                                     viewModel.registrar()
                                     if (successRegister) {

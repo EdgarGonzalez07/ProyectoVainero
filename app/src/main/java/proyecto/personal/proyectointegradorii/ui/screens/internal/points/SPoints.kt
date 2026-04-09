@@ -22,6 +22,8 @@ import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -45,15 +47,39 @@ import proyecto.personal.proyectointegradorii.ui.theme.MainColor
 import proyecto.personal.proyectointegradorii.ui.theme.SuccessfulColor
 import proyecto.personal.proyectointegradorii.ui.theme.TextColorDark
 import proyecto.personal.proyectointegradorii.ui.theme.TextColorGray
+import proyecto.personal.proyectointegradorii.viewmodels.cart.CartViewModel
 
 @Composable
-fun SPoints(){
+fun SPoints(cartViewModel: CartViewModel) {
+
+    val puntos by cartViewModel.puntosUsuario.collectAsState()
+
     LazyColumn(
         modifier = Modifier.fillMaxSize()
             .background(BackgroundColor)
     ) {
         item {
             HeaderPuntos()
+        }
+        item {
+            Column(modifier = Modifier.padding(20.dp)) {
+
+                GlobalText(
+                    "Tus puntos",
+                    16,
+                    TextColorDark,
+                    Modifier
+                )
+
+                Spacer(modifier = Modifier.height(5.dp))
+
+                GlobalText(
+                    "$puntos puntos",
+                    28,
+                    MainColor,
+                    Modifier
+                )
+            }
         }
         item {
             Column(
@@ -243,10 +269,4 @@ fun SPoints(){
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun Psp(){
-    SPoints()
 }

@@ -1,4 +1,4 @@
-package proyecto.personal.proyectointegradorii.ui.components.bars.searchbar
+package proyecto.personal.proyectointegradorii.ui.components.bars
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer

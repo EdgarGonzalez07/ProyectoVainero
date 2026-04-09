@@ -31,6 +31,8 @@ import proyecto.personal.proyectointegradorii.ui.components.texts.GlobalText
 import proyecto.personal.proyectointegradorii.ui.theme.BackgroundColor
 import proyecto.personal.proyectointegradorii.ui.theme.MainColor
 import proyecto.personal.proyectointegradorii.ui.theme.TextColorDark
+import proyecto.personal.proyectointegradorii.ui.theme.TextColorGray
+import proyecto.personal.proyectointegradorii.ui.theme.TextColorWhite
 import proyecto.personal.proyectointegradorii.viewmodels.login.LoginViewModel
 
 @Composable
@@ -134,7 +136,7 @@ fun ScreenLogin(
                        275,
                        MainColor,
                        MainColor,
-                       Color.White,
+                       TextColorWhite,
                        {
                            viewModel.login()
                            if (loginsuccess) {
@@ -161,7 +163,7 @@ fun ScreenLogin(
             GlobalText(
                 "¿No tienes una cuenta?",
                 20,
-                color = Color.Gray,
+                TextColorGray,
                 Modifier
             )
             GlobalTextButton(

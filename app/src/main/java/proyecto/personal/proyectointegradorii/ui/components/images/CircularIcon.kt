@@ -20,7 +20,6 @@ fun CircularIcon(
     tintIcon: Color,
     backgroundColor: Color,
     description: String
-
 ) {
     Box(
         modifier = Modifier

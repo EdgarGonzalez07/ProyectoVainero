@@ -19,7 +19,7 @@ fun Navigation(){
 
     NavHost(
         navController = navController,
-        startDestination = "Main"
+        startDestination = "Login"
     ){
         composable("Login"){
             ScreenLogin(navController)

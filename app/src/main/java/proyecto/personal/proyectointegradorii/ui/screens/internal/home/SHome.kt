@@ -36,7 +36,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import proyecto.personal.proyectointegradorii.data.remote.dto.platillo.PlatilloDto
 import proyecto.personal.proyectointegradorii.ui.components.cards.PlatilloCard
+import proyecto.personal.proyectointegradorii.ui.components.headers.HeaderHome
 import proyecto.personal.proyectointegradorii.ui.components.modals.PlatilloModal
+import proyecto.personal.proyectointegradorii.ui.theme.BackgroundColor
 import proyecto.personal.proyectointegradorii.viewmodels.cart.CartViewModel
 import proyecto.personal.proyectointegradorii.viewmodels.home.HomeViewModel
 
@@ -52,16 +54,19 @@ fun SHome(
 
     var selectedPlatillo by remember { mutableStateOf<PlatilloDto?>(null) }
     var showModal by remember { mutableStateOf(false) }
+    var query by remember { mutableStateOf("") }
 
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .background(BackgroundColor)
     ) {
 
-        // TOP BAR
-        TopBarFake(
-            onProfileClick = {
-                navController.navigate("account")
-            }
+        HeaderHome(
+            query,
+            { query = it },
+            onFilterClick = { },
+            onProfileClick = { navController.navigate("account")}
         )
 
         // LISTA
@@ -98,56 +103,6 @@ fun SHome(
                     }
                 )
             }
-        }
-    }
-}
-
-@Composable
-fun TopBarFake(
-    onProfileClick: () -> Unit
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-
-        // Filtros
-        IconButton(
-            onClick = {},
-            modifier = Modifier
-                .size(50.dp)
-                .background(Color.White, RoundedCornerShape(16.dp))
-        ) {
-            Icon(Icons.Default.Tune, contentDescription = "")
-        }
-
-        Spacer(modifier = Modifier.width(12.dp))
-
-        // Buscador
-        Box(
-            modifier = Modifier
-                .weight(1f)
-                .height(50.dp)
-                .background(Color.LightGray.copy(alpha = 0.3f), RoundedCornerShape(16.dp)),
-            contentAlignment = Alignment.CenterStart
-        ) {
-            Row(modifier = Modifier.padding(start = 12.dp)) {
-                Icon(Icons.Default.Search, contentDescription = "")
-                Spacer(modifier = Modifier.width(8.dp))
-                Text("Buscar...")
-            }
-        }
-
-        Spacer(modifier = Modifier.width(12.dp))
-
-        // Perfil
-        IconButton(onClick = { onProfileClick() }) {
-            Icon(
-                imageVector = Icons.Default.Person,
-                contentDescription = "Perfil"
-            )
         }
     }
 }

@@ -47,6 +47,7 @@ import proyecto.personal.proyectointegradorii.ui.theme.DarkCardColor
 import proyecto.personal.proyectointegradorii.ui.theme.DarkHeaderColor
 import proyecto.personal.proyectointegradorii.ui.theme.DarkTextGray
 import proyecto.personal.proyectointegradorii.ui.theme.DarkTextWhite
+import proyecto.personal.proyectointegradorii.ui.theme.TextColorWhite
 
 @Composable
 fun SConfigurate(navController: NavController){
@@ -69,7 +70,7 @@ fun SConfigurate(navController: NavController){
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
 
-            // 1. HEADER (Ahora soporta el gradiente)
+            // 1. HEADER
             HeaderCBack(
                 tittle = "Ajustes",
                 sizetittle = 36,
@@ -191,7 +192,7 @@ fun SConfigurate(navController: NavController){
                             ancho = 350,
                             bordercolorbutton = AlertColor,
                             colorbutton = AlertColor,
-                            colortext = Color.White,
+                            colortext = TextColorWhite,
                             modifier = Modifier.fillMaxWidth(),
                             onClick = { /* Lógica eliminar */ }
                         )

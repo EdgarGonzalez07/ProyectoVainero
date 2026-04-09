@@ -192,7 +192,7 @@ fun ChangePasswordScreen(
                     textsize = 16,
                     alt = 55,
                     ancho = 160,
-                    bordercolorbutton = Color.White,
+                    bordercolorbutton = MainColor,
                     colorbutton = MainColor,
                     colortext = Color.White,
                     onClick = {

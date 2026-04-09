@@ -8,14 +8,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import proyecto.personal.proyectointegradorii.ui.components.bars.navigationbar.MainBottomBar
+import proyecto.personal.proyectointegradorii.ui.components.bars.MainBottomBar
 import proyecto.personal.proyectointegradorii.ui.screens.internal.account.SAccount
 import proyecto.personal.proyectointegradorii.ui.screens.internal.cart.SCart
 import proyecto.personal.proyectointegradorii.ui.screens.internal.home.SHome
@@ -29,7 +26,6 @@ import proyecto.personal.proyectointegradorii.viewmodels.cart.CartViewModel
 fun SMain(rootNavController: NavHostController) {
 
     val navController = rememberNavController()
-    var showCategories by remember { mutableStateOf(false) }
 
     val cartViewModel: CartViewModel = remember { CartViewModel() }
 
@@ -52,8 +48,8 @@ fun SMain(rootNavController: NavHostController) {
             }
             composable("scan") { SScan() }
             composable("offers") { SOffers() }
-            composable("points") { SPoints() }
-            composable("account") { SAccount(navController, rootNavController) }
+            composable("points") { SPoints(cartViewModel) }
+            composable("account") { SAccount(rootNavController) }
         }
     }
 }
