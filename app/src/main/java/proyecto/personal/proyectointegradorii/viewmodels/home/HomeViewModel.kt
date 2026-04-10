@@ -26,7 +26,7 @@ class HomeViewModel : ViewModel() {
     // PRUEBA PATROCINADA POR GEPETO
     private val userRepository = UserRepository()
 
-    fun testAuth() {
+    fun testAuzth() {
         viewModelScope.launch {
             try {
                 val user = userRepository.getCurrentUser()

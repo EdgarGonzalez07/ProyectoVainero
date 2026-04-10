@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import proyecto.personal.proyectointegradorii.data.model.usuario.AppDatabase
 import proyecto.personal.proyectointegradorii.data.remote.dto.usuario.LoginResponse
 import proyecto.personal.proyectointegradorii.data.remote.network.SessionManager
 import proyecto.personal.proyectointegradorii.data.repositories.UserRepository
@@ -86,6 +85,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
             } catch (e: Exception) {
                 _generalErrorMessage.value = "Error de conexión"
+                println(e.message)
             }
 
             _isLoading.value = false

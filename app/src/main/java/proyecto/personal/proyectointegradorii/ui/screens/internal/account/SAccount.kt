@@ -1,6 +1,5 @@
 package proyecto.personal.proyectointegradorii.ui.screens.internal.account
 
-import android.R.attr.thickness
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
