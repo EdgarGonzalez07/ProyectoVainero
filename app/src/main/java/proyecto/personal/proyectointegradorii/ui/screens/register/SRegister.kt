@@ -15,7 +15,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -82,11 +81,7 @@ fun ScreenRegister(
             "Crear Cuenta",
             35,
             MainColor,
-            Modifier
-                .padding(
-                    start = (-20).dp,
-                    end = (-20).dp
-                ),
+            Modifier,
             navController
         )
         Spacer(modifier = Modifier.height(40.dp))
@@ -115,7 +110,8 @@ fun ScreenRegister(
                             "Juan Peréz",
                             Modifier,
                             60,
-                            350
+                            350,
+                            isError = errorName != null
                         )
                         ErrorText(errorName, 14, Modifier)
                         Spacer(Modifier.padding(vertical = 12.dp))
@@ -131,7 +127,8 @@ fun ScreenRegister(
                             "tu@email.com",
                             Modifier,
                             60,
-                            350
+                            350,
+                            isError = errorEmail != null
                         )
                         ErrorText(errorEmail, 14, Modifier)
                         Spacer(Modifier.padding(vertical = 12.dp))
@@ -147,7 +144,8 @@ fun ScreenRegister(
                             "•••••••",
                             60,
                             350,
-                            Modifier
+                            Modifier,
+                            isError = errorPassword != null
                         )
                         ErrorText(errorPassword, 14, Modifier)
                         Spacer(Modifier.padding(vertical = 12.dp))
@@ -163,7 +161,8 @@ fun ScreenRegister(
                             "•••••••",
                             60,
                             350,
-                            Modifier
+                            Modifier,
+                            isError = errorConfirmPassword != null
                         )
                         ErrorText(errorConfirmPassword, 14, Modifier)
                     }
